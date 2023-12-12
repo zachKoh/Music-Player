@@ -64,10 +64,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "player") as? PlayerViewController else {
             return
         }
-        
         vc.songs = songs
         vc.position = position
-        print(position)
         
         present(vc, animated: true)
     }
