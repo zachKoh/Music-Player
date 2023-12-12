@@ -14,6 +14,7 @@ class PlayerViewController: UIViewController {
     public var songs: [Song] = []
     var musicPlaying: AVAudioPlayer?
     
+    @IBOutlet var imageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class PlayerViewController: UIViewController {
     }
     
     func configure() {
+        
         // set up player
         let song = songs[position]
         let path = Bundle.main.path(forResource: song.trackName, ofType:"mp3")!
@@ -37,8 +39,13 @@ class PlayerViewController: UIViewController {
         } catch {
             print("Error occured loading file...")
         }
+        
+        
+        
         //set up user interface elements
         
+        let theImage: UIImage = UIImage(named: song.imageName)!
+        imageView.image = theImage
     }
 
 }
