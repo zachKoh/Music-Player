@@ -15,6 +15,8 @@ class PlayerViewController: UIViewController {
     var musicPlaying: AVAudioPlayer?
     
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var trackName: UILabel!
+    @IBOutlet var artistName: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,8 @@ class PlayerViewController: UIViewController {
         
         let theImage: UIImage = UIImage(named: song.imageName)!
         imageView.image = theImage
+        trackName.text = song.name
+        artistName.text = song.artistName
     }
 
 }
