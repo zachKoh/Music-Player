@@ -76,38 +76,50 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="feM-Yj-u1h">
                                 <rect key="frame" x="29" y="157" width="333" height="333"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist name..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y35-5L-R4B">
-                                <rect key="frame" x="29" y="562.66666666666663" width="333" height="19.333333333333371"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song name..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fis-8R-7W3">
-                                <rect key="frame" x="29" y="516" width="333" height="40.666666666666629"/>
+                                <rect key="frame" x="40" y="516" width="322" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist name..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y35-5L-R4B">
+                                <rect key="frame" x="40" y="563" width="322" height="19"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="tCV-Xf-uSn">
+                                <rect key="frame" x="27" y="616" width="337" height="30"/>
+                                <connections>
+                                    <action selector="audioChangeTime:" destination="AAk-o2-CYd" eventType="valueChanged" id="omO-tt-73z"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0AB-AA-NV0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="0AB-AA-NV0" firstAttribute="trailing" secondItem="fis-8R-7W3" secondAttribute="trailing" constant="28" id="4P5-RL-r3V"/>
+                            <constraint firstItem="0AB-AA-NV0" firstAttribute="trailing" secondItem="Y35-5L-R4B" secondAttribute="trailing" constant="28" id="8oA-kn-S35"/>
                             <constraint firstItem="0AB-AA-NV0" firstAttribute="bottom" secondItem="feM-Yj-u1h" secondAttribute="bottom" constant="320" id="GL7-tE-RpS"/>
-                            <constraint firstItem="Y35-5L-R4B" firstAttribute="top" secondItem="fis-8R-7W3" secondAttribute="bottom" constant="6" id="HmF-Cp-8em"/>
-                            <constraint firstItem="fis-8R-7W3" firstAttribute="leading" secondItem="0AB-AA-NV0" secondAttribute="leading" constant="29" id="Ljw-oX-OjQ"/>
+                            <constraint firstItem="tCV-Xf-uSn" firstAttribute="leading" secondItem="0AB-AA-NV0" secondAttribute="leading" constant="29" id="HBq-bc-Iue"/>
+                            <constraint firstItem="0AB-AA-NV0" firstAttribute="bottom" secondItem="tCV-Xf-uSn" secondAttribute="bottom" constant="165" id="Hn3-td-F3l"/>
+                            <constraint firstItem="0AB-AA-NV0" firstAttribute="trailing" secondItem="fis-8R-7W3" secondAttribute="trailing" constant="28" id="Hp1-6e-UHP"/>
+                            <constraint firstItem="Y35-5L-R4B" firstAttribute="leading" secondItem="0AB-AA-NV0" secondAttribute="leading" constant="40" id="JZj-GF-1fb"/>
                             <constraint firstItem="0AB-AA-NV0" firstAttribute="trailing" secondItem="feM-Yj-u1h" secondAttribute="trailing" constant="28" id="NZV-2m-2ps"/>
                             <constraint firstItem="feM-Yj-u1h" firstAttribute="top" secondItem="0AB-AA-NV0" secondAttribute="top" constant="110" id="OQ3-eh-3Av"/>
-                            <constraint firstItem="0AB-AA-NV0" firstAttribute="trailing" secondItem="Y35-5L-R4B" secondAttribute="trailing" constant="28" id="hAA-25-X4M"/>
+                            <constraint firstItem="Y35-5L-R4B" firstAttribute="top" secondItem="fis-8R-7W3" secondAttribute="bottom" constant="6" id="SpF-bU-Oof"/>
+                            <constraint firstItem="0AB-AA-NV0" firstAttribute="bottom" secondItem="Y35-5L-R4B" secondAttribute="bottom" constant="228" id="b16-Gs-DwK"/>
+                            <constraint firstItem="fis-8R-7W3" firstAttribute="top" secondItem="feM-Yj-u1h" secondAttribute="bottom" constant="26" id="c0E-go-AW5"/>
+                            <constraint firstItem="tCV-Xf-uSn" firstAttribute="top" secondItem="Y35-5L-R4B" secondAttribute="bottom" constant="34" id="cWf-7S-R34"/>
+                            <constraint firstItem="Y35-5L-R4B" firstAttribute="top" secondItem="fis-8R-7W3" secondAttribute="bottom" constant="6" id="eCF-Wx-yqx"/>
+                            <constraint firstItem="fis-8R-7W3" firstAttribute="leading" secondItem="0AB-AA-NV0" secondAttribute="leading" constant="40" id="fbi-Cq-qrQ"/>
                             <constraint firstItem="feM-Yj-u1h" firstAttribute="leading" secondItem="0AB-AA-NV0" secondAttribute="leading" constant="29" id="oSw-8n-fZ7"/>
-                            <constraint firstItem="Y35-5L-R4B" firstAttribute="leading" secondItem="0AB-AA-NV0" secondAttribute="leading" constant="29" id="q2b-IY-aeL"/>
-                            <constraint firstItem="0AB-AA-NV0" firstAttribute="bottom" secondItem="Y35-5L-R4B" secondAttribute="bottom" constant="228" id="qSm-1q-8YS"/>
-                            <constraint firstItem="fis-8R-7W3" firstAttribute="top" secondItem="feM-Yj-u1h" secondAttribute="bottom" constant="26" id="rzC-7F-BiL"/>
+                            <constraint firstItem="0AB-AA-NV0" firstAttribute="trailing" secondItem="tCV-Xf-uSn" secondAttribute="trailing" constant="28" id="zvd-hN-hwe"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="artistName" destination="Y35-5L-R4B" id="D7k-rP-5fe"/>
                         <outlet property="imageView" destination="feM-Yj-u1h" id="cdv-UD-5Qj"/>
+                        <outlet property="slider" destination="tCV-Xf-uSn" id="9BO-nq-XrC"/>
                         <outlet property="trackName" destination="fis-8R-7W3" id="Xjz-YF-APq"/>
                     </connections>
                 </viewController>
