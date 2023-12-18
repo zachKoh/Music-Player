@@ -88,4 +88,22 @@ class PlayerViewController: UIViewController {
             musicPlaying?.stop()
         }
     }
+    
+    
+    @objc func tappedBackButton(_ sender: Any) {
+        if position > 0 {
+            position = position - 1
+            musicPlaying?.stop()
+            configure()
+        }
+    }
+    
+    
+    @objc func tappedForwardButton(_ sender: Any) {
+        if position < (songs.count - 1) {
+            position = position + 1
+            musicPlaying?.stop()
+            configure()
+        }
+    }
 }
