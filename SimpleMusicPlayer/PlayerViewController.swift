@@ -18,14 +18,15 @@ class PlayerViewController: UIViewController {
     @IBOutlet var trackName: UILabel!
     @IBOutlet var artistName: UILabel!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var pauseButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        configure()
     }
     
     func configure() {
@@ -34,7 +35,7 @@ class PlayerViewController: UIViewController {
         let song = songs[position]
         let path = Bundle.main.path(forResource: song.trackName, ofType:"mp3")!
         let url = URL(fileURLWithPath: path)
-
+        
         do {
             musicPlaying = try AVAudioPlayer(contentsOf: url)
             musicPlaying?.play()
@@ -44,7 +45,6 @@ class PlayerViewController: UIViewController {
         
         //Configuring slider
         slider.maximumValue = Float(musicPlaying?.duration ?? 0)
-        //var Timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: Selector("updateSlider"), userInfo: nil, repeats: true)
         
         //Timer for the slider
         _ = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
@@ -68,5 +68,24 @@ class PlayerViewController: UIViewController {
     
     @objc func updateSlider(){
         slider.value = Float(musicPlaying?.currentTime ?? 0)
+    }
+    
+    @IBAction func pressedPause(_ sender: Any) {
+        if !musicPlaying!.isPlaying {
+            musicPlaying?.play()
+            //pauseButton.setBackgroundImage(UIImage(systemName: "play.fill"), for: .normal)
+            pauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        } else {
+            musicPlaying?.pause()
+            //pauseButton.setBackgroundImage(UIImage(systemName: "pause.fill"), for: .normal)
+            pauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isBeingDismissed {
+            musicPlaying?.stop()
+        }
     }
 }

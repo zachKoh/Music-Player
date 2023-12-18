@@ -94,6 +94,21 @@
                                     <action selector="audioChangeTime:" destination="AAk-o2-CYd" eventType="valueChanged" id="omO-tt-73z"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3o-zC-lZP">
+                                <rect key="frame" x="155" y="684" width="80" height="80"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Ppc-RQ-tQt"/>
+                                    <constraint firstAttribute="width" constant="80" id="Ry3-av-4lI"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="pause.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="pressedPause:" destination="AAk-o2-CYd" eventType="touchUpInside" id="qLd-d8-vk1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0AB-AA-NV0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -104,6 +119,7 @@
                             <constraint firstItem="0AB-AA-NV0" firstAttribute="bottom" secondItem="tCV-Xf-uSn" secondAttribute="bottom" constant="165" id="Hn3-td-F3l"/>
                             <constraint firstItem="0AB-AA-NV0" firstAttribute="trailing" secondItem="fis-8R-7W3" secondAttribute="trailing" constant="28" id="Hp1-6e-UHP"/>
                             <constraint firstItem="Y35-5L-R4B" firstAttribute="leading" secondItem="0AB-AA-NV0" secondAttribute="leading" constant="40" id="JZj-GF-1fb"/>
+                            <constraint firstItem="O3o-zC-lZP" firstAttribute="centerX" secondItem="WZf-7k-gwM" secondAttribute="centerX" id="Kno-dg-pDQ"/>
                             <constraint firstItem="0AB-AA-NV0" firstAttribute="trailing" secondItem="feM-Yj-u1h" secondAttribute="trailing" constant="28" id="NZV-2m-2ps"/>
                             <constraint firstItem="feM-Yj-u1h" firstAttribute="top" secondItem="0AB-AA-NV0" secondAttribute="top" constant="110" id="OQ3-eh-3Av"/>
                             <constraint firstItem="Y35-5L-R4B" firstAttribute="top" secondItem="fis-8R-7W3" secondAttribute="bottom" constant="6" id="SpF-bU-Oof"/>
@@ -112,6 +128,7 @@
                             <constraint firstItem="tCV-Xf-uSn" firstAttribute="top" secondItem="Y35-5L-R4B" secondAttribute="bottom" constant="34" id="cWf-7S-R34"/>
                             <constraint firstItem="Y35-5L-R4B" firstAttribute="top" secondItem="fis-8R-7W3" secondAttribute="bottom" constant="6" id="eCF-Wx-yqx"/>
                             <constraint firstItem="fis-8R-7W3" firstAttribute="leading" secondItem="0AB-AA-NV0" secondAttribute="leading" constant="40" id="fbi-Cq-qrQ"/>
+                            <constraint firstItem="O3o-zC-lZP" firstAttribute="centerY" secondItem="WZf-7k-gwM" secondAttribute="centerY" constant="302" id="kfU-cM-usc"/>
                             <constraint firstItem="feM-Yj-u1h" firstAttribute="leading" secondItem="0AB-AA-NV0" secondAttribute="leading" constant="29" id="oSw-8n-fZ7"/>
                             <constraint firstItem="0AB-AA-NV0" firstAttribute="trailing" secondItem="tCV-Xf-uSn" secondAttribute="trailing" constant="28" id="zvd-hN-hwe"/>
                         </constraints>
@@ -119,6 +136,7 @@
                     <connections>
                         <outlet property="artistName" destination="Y35-5L-R4B" id="D7k-rP-5fe"/>
                         <outlet property="imageView" destination="feM-Yj-u1h" id="cdv-UD-5Qj"/>
+                        <outlet property="pauseButton" destination="O3o-zC-lZP" id="cI5-MV-bkW"/>
                         <outlet property="slider" destination="tCV-Xf-uSn" id="9BO-nq-XrC"/>
                         <outlet property="trackName" destination="fis-8R-7W3" id="Xjz-YF-APq"/>
                     </connections>
@@ -147,6 +165,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="pause.fill" catalog="system" width="117" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
