@@ -18,6 +18,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         configureSongs()
         table.delegate = self
         table.dataSource = self
+        title = "My Playlist"
+        configureBarButtons()
+    }
+    
+    private func configureBarButtons() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.pressedAddButton))
     }
     
     func configureSongs(){
@@ -69,8 +75,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         present(vc, animated: true)
     }
-
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            songs.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    @objc func pressedAddButton(){
+        //Segeue to new song form view controller
+        
+        let newSongFormVC = UIViewController()
+        newSongFormVC.title = "New song"
+        newSongFormVC.view.backgroundColor = .systemBackground
+        navigationController?.pushViewController(newSongFormVC, animated: true)
+    }
 }
+
+
 
 struct Song{
     let name: String
