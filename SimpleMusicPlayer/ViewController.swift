@@ -8,6 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var newSongName: String = ""
+    weak var delegate: AddSongViewController!
 
     @IBOutlet var table: UITableView!
     
@@ -84,12 +87,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func pressedAddButton(){
-        //Segeue to new song form view controller
+        //Segeue to new song view controller
         
-        let newSongFormVC = UIViewController()
-        newSongFormVC.title = "New song"
-        newSongFormVC.view.backgroundColor = .systemBackground
-        navigationController?.pushViewController(newSongFormVC, animated: true)
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "addSong") as? AddSongViewController else {
+            return
+        }
+        vc.title = "Add new song"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    @IBAction func addedSong(_ sender: Any) {
+        print(newSongName)
+        print("heyyyy")
     }
 }
 
