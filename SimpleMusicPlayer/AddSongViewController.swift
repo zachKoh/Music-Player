@@ -34,8 +34,8 @@ class AddSongViewController: UIViewController {
         
         //transfer variables to main view controller
         let viewController = ViewController()
-        viewController.newSongName = "Taylor Swift"
-        viewController.delegate = self
+        //viewController.newSongName = "Taylor Swift"
+        //viewController.delegate = self
     }
     
 }

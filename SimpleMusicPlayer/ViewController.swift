@@ -8,9 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var newSongName: String = ""
-    weak var delegate: AddSongViewController!
 
     @IBOutlet var table: UITableView!
     
@@ -87,20 +84,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func pressedAddButton(){
-        //Segeue to new song view controller
+        let alert = UIAlertController(
+            title: "Add a new song",
+            message: "Fill in song details to add a new song.",
+            preferredStyle: .alert
+        )
         
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "addSong") as? AddSongViewController else {
-            return
+        alert.addTextField { field in
+            field.placeholder = "Song name"
+            field.returnKeyType = .next
+            field.keyboardType = .default
         }
-        vc.title = "Add new song"
-        navigationController?.pushViewController(vc, animated: true)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Add song", style: .default, handler: { _ in
+            //read textfield values
+        }))
+        
+        present(alert, animated: true)
     }
-    
-    
-    @IBAction func addedSong(_ sender: Any) {
-        print(newSongName)
-        print("heyyyy")
-    }
+
 }
 
 
