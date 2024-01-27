@@ -90,19 +90,66 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             preferredStyle: .alert
         )
         
+        //Song name text field
         alert.addTextField { field in
             field.placeholder = "Song name"
             field.returnKeyType = .next
             field.keyboardType = .default
         }
         
+        //Album name text field
+        alert.addTextField { field in
+            field.placeholder = "Album name"
+            field.returnKeyType = .next
+            field.keyboardType = .default
+        }
+        
+        //Artist name text field
+        alert.addTextField { field in
+            field.placeholder = "Artist name"
+            field.returnKeyType = .next
+            field.keyboardType = .default
+        }
+        
+        //Image name text field
+        alert.addTextField { field in
+            field.placeholder = "Image name"
+            field.returnKeyType = .next
+            field.keyboardType = .default
+        }
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Add song", style: .default, handler: { _ in
+            
             //read textfield values
             guard let textFields = alert.textFields else {
                 return
             }
-            let songName = textFields[0]
+            let songNameField = textFields[0]
+            let albumNameField = textFields[1]
+            let artistNameField = textFields[2]
+            let imageNameField = textFields[3]
+            
+            //Check if fields are empty and assign to variables
+            guard let songName = songNameField.text, !songName.isEmpty else {
+                //Enter song name
+                print("Missing song name")
+                return
+            }
+            guard let albumName = albumNameField.text, !albumName.isEmpty else {
+                print("Missing album name")
+                return
+            }
+            guard let artistName = artistNameField.text, !artistName.isEmpty else {
+                print("Missing artist name")
+                return
+            }
+            guard let imageName = imageNameField.text, !imageName.isEmpty else {
+                print("Missing image name")
+                return
+            }
+            print("success")
+            
         }))
         
         present(alert, animated: true)
