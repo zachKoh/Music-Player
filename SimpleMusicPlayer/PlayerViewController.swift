@@ -33,7 +33,7 @@ class PlayerViewController: UIViewController {
         
         // set up player
         let song = songs[position]
-        let path = Bundle.main.path(forResource: song.trackName, ofType:"mp3")!
+        let path = Bundle.main.path(forResource: song.name, ofType:"mp3")!
         let url = URL(fileURLWithPath: path)
         
         do {

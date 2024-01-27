@@ -19,9 +19,8 @@
 		8406CFC82B039C9E0085B373 /* SimpleMusicPlayerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406CFC72B039C9E0085B373 /* SimpleMusicPlayerUITestsLaunchTests.swift */; };
 		8406CFD82B042EE80085B373 /* Just the Way You Are.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8406CFD52B042EE70085B373 /* Just the Way You Are.mp3 */; };
 		8406CFD92B042EE80085B373 /* Love, love, love.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8406CFD62B042EE70085B373 /* Love, love, love.mp3 */; };
-		8406CFDA2B042EE80085B373 /* always.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8406CFD72B042EE80085B373 /* always.mp3 */; };
+		8406CFDA2B042EE80085B373 /* Always.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8406CFD72B042EE80085B373 /* Always.mp3 */; };
 		845752332B0F644500080311 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845752322B0F644400080311 /* PlayerViewController.swift */; };
-		848C9F472B62BC8E006A8AA7 /* AddSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C9F462B62BC8D006A8AA7 /* AddSongViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,9 +57,8 @@
 		8406CFC72B039C9E0085B373 /* SimpleMusicPlayerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMusicPlayerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8406CFD52B042EE70085B373 /* Just the Way You Are.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Just the Way You Are.mp3"; sourceTree = "<group>"; };
 		8406CFD62B042EE70085B373 /* Love, love, love.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Love, love, love.mp3"; sourceTree = "<group>"; };
-		8406CFD72B042EE80085B373 /* always.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = always.mp3; sourceTree = "<group>"; };
+		8406CFD72B042EE80085B373 /* Always.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Always.mp3; sourceTree = "<group>"; };
 		845752322B0F644400080311 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		848C9F462B62BC8D006A8AA7 /* AddSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +114,6 @@
 				8406CFA32B039C990085B373 /* SceneDelegate.swift */,
 				8406CFA52B039C990085B373 /* ViewController.swift */,
 				8406CFA72B039C990085B373 /* Main.storyboard */,
-				848C9F462B62BC8D006A8AA7 /* AddSongViewController.swift */,
 				8406CFAD2B039C9D0085B373 /* Assets.xcassets */,
 				8406CFAF2B039C9D0085B373 /* LaunchScreen.storyboard */,
 				8406CFB22B039C9D0085B373 /* Info.plist */,
@@ -146,7 +143,7 @@
 		8406CFD42B042EB20085B373 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				8406CFD72B042EE80085B373 /* always.mp3 */,
+				8406CFD72B042EE80085B373 /* Always.mp3 */,
 				8406CFD52B042EE70085B373 /* Just the Way You Are.mp3 */,
 				8406CFD62B042EE70085B373 /* Love, love, love.mp3 */,
 			);
@@ -262,7 +259,7 @@
 				8406CFAE2B039C9D0085B373 /* Assets.xcassets in Resources */,
 				8406CFA92B039C990085B373 /* Main.storyboard in Resources */,
 				8406CFD82B042EE80085B373 /* Just the Way You Are.mp3 in Resources */,
-				8406CFDA2B042EE80085B373 /* always.mp3 in Resources */,
+				8406CFDA2B042EE80085B373 /* Always.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +285,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8406CFA62B039C990085B373 /* ViewController.swift in Sources */,
-				848C9F472B62BC8E006A8AA7 /* AddSongViewController.swift in Sources */,
 				8406CFA22B039C990085B373 /* AppDelegate.swift in Sources */,
 				8406CFAC2B039C990085B373 /* SimpleMusicPlayer.xcdatamodeld in Sources */,
 				8406CFA42B039C990085B373 /* SceneDelegate.swift in Sources */,

@@ -27,15 +27,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func configureSongs(){
-        songs.append(Song(name: "Always", albumName: "Always", artistName: "Daniel Caesar", imageName: "Image3", trackName: "always"))
-        songs.append(Song(name: "Just the Way You Are", albumName: "The Stranger", artistName: "Billy Joel", imageName: "Image2", trackName: "Just the Way You Are"))
-        songs.append(Song(name: "Love, love, love", albumName: "Extension of a Man", artistName: "Donny Hathaway", imageName: "Image1", trackName: "Love, love, love"))
-        songs.append(Song(name: "Always", albumName: "Always", artistName: "Daniel Caesar", imageName: "Image3", trackName: "always"))
-        songs.append(Song(name: "Just the Way You Are", albumName: "The Stranger", artistName: "Billy Joel", imageName: "Image2", trackName: "Just the Way You Are"))
-        songs.append(Song(name: "Love, love, love", albumName: "Extension of a Man", artistName: "Donny Hathaway", imageName: "Image1", trackName: "Love, love, love"))
-        songs.append(Song(name: "Always", albumName: "Always", artistName: "Daniel Caesar", imageName: "Image3", trackName: "always"))
-        songs.append(Song(name: "Just the Way You Are", albumName: "The Stranger", artistName: "Billy Joel", imageName: "Image2", trackName: "Just the Way You Are"))
-        songs.append(Song(name: "Love, love, love", albumName: "Extension of a Man", artistName: "Donny Hathaway", imageName: "Image1", trackName: "Love, love, love"))
+        songs.append(Song(name: "Always", albumName: "Always", artistName: "Daniel Caesar", imageName: "Image3"))
+        songs.append(Song(name: "Just the Way You Are", albumName: "The Stranger", artistName: "Billy Joel", imageName: "Image2"))
+        songs.append(Song(name: "Love, love, love", albumName: "Extension of a Man", artistName: "Donny Hathaway", imageName: "Image1"))
+        songs.append(Song(name: "Always", albumName: "Always", artistName: "Daniel Caesar", imageName: "Image3"))
+        songs.append(Song(name: "Just the Way You Are", albumName: "The Stranger", artistName: "Billy Joel", imageName: "Image2"))
+        songs.append(Song(name: "Love, love, love", albumName: "Extension of a Man", artistName: "Donny Hathaway", imageName: "Image1"))
+        songs.append(Song(name: "Always", albumName: "Always", artistName: "Daniel Caesar", imageName: "Image3"))
+        songs.append(Song(name: "Just the Way You Are", albumName: "The Stranger", artistName: "Billy Joel", imageName: "Image2"))
+        songs.append(Song(name: "Love, love, love", albumName: "Extension of a Man", artistName: "Donny Hathaway", imageName: "Image1"))
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,6 +99,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Add song", style: .default, handler: { _ in
             //read textfield values
+            guard let textFields = alert.textFields else {
+                return
+            }
+            let songName = textFields[0]
         }))
         
         present(alert, animated: true)
@@ -113,5 +117,4 @@ struct Song{
     let albumName: String
     let artistName: String
     let imageName: String
-    let trackName: String
 }
