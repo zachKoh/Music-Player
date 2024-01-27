@@ -118,6 +118,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             field.keyboardType = .default
         }
         
+        let missingFieldAlert = UIAlertController(
+            title: "Failed to add song",
+            message: "Please fill in all fields.",
+            preferredStyle: .alert
+        )
+        missingFieldAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Add song", style: .default, handler: { _ in
             
@@ -132,23 +139,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             //Check if fields are empty and assign to variables
             guard let songName = songNameField.text, !songName.isEmpty else {
-                //Enter song name
-                print("Missing song name")
+                self.present(missingFieldAlert, animated: true)
                 return
             }
             guard let albumName = albumNameField.text, !albumName.isEmpty else {
-                print("Missing album name")
+                self.present(missingFieldAlert, animated: true)
                 return
             }
             guard let artistName = artistNameField.text, !artistName.isEmpty else {
-                print("Missing artist name")
+                self.present(missingFieldAlert, animated: true)
                 return
             }
             guard let imageName = imageNameField.text, !imageName.isEmpty else {
-                print("Missing image name")
+                self.present(missingFieldAlert, animated: true)
                 return
             }
-            print("success")
+            self.songs.append(Song(name: songName, albumName: albumName, artistName: artistName, imageName: imageName))
             
         }))
         
