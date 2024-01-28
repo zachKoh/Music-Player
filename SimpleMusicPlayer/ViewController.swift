@@ -118,6 +118,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             field.keyboardType = .default
         }
         
+        //Configure missing field alert
         let missingFieldAlert = UIAlertController(
             title: "Failed to add song",
             message: "Please fill in all fields.",
@@ -155,7 +156,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return
             }
             self.songs.append(Song(name: songName, albumName: albumName, artistName: artistName, imageName: imageName))
-            
+            self.table.reloadData()
         }))
         
         present(alert, animated: true)
