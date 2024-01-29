@@ -11,7 +11,7 @@ import UIKit
 class PlayerViewController: UIViewController {
     
     public var position: Int = 0
-    public var songs: [Song] = []
+    public var songs: [SongItem] = []
     var musicPlaying: AVAudioPlayer?
     
     @IBOutlet var imageView: UIImageView!
@@ -33,7 +33,7 @@ class PlayerViewController: UIViewController {
         
         // set up player
         let song = songs[position]
-        let path = Bundle.main.path(forResource: song.name, ofType:"mp3")!
+        let path = Bundle.main.path(forResource: song.songName, ofType:"mp3")!
         let url = URL(fileURLWithPath: path)
         
         do {
@@ -51,9 +51,9 @@ class PlayerViewController: UIViewController {
         
         
         //set up user interface elements
-        let theImage: UIImage = UIImage(named: song.imageName)!
+        let theImage: UIImage = UIImage(named: song.imageName ?? "Image3")!
         imageView.image = theImage
-        trackName.text = song.name
+        trackName.text = song.songName
         artistName.text = song.artistName
         
     }

@@ -8,10 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     @IBOutlet var table: UITableView!
     
-    var songs = [Song]()
+    private var songs = [SongItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +29,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func configureSongs(){
-        songs.append(Song(name: "Always", albumName: "Always", artistName: "Daniel Caesar", imageName: "Image3"))
-        songs.append(Song(name: "Just the Way You Are", albumName: "The Stranger", artistName: "Billy Joel", imageName: "Image2"))
-        songs.append(Song(name: "Love, love, love", albumName: "Extension of a Man", artistName: "Donny Hathaway", imageName: "Image1"))
-        songs.append(Song(name: "Always", albumName: "Always", artistName: "Daniel Caesar", imageName: "Image3"))
-        songs.append(Song(name: "Just the Way You Are", albumName: "The Stranger", artistName: "Billy Joel", imageName: "Image2"))
-        songs.append(Song(name: "Love, love, love", albumName: "Extension of a Man", artistName: "Donny Hathaway", imageName: "Image1"))
-        songs.append(Song(name: "Always", albumName: "Always", artistName: "Daniel Caesar", imageName: "Image3"))
-        songs.append(Song(name: "Just the Way You Are", albumName: "The Stranger", artistName: "Billy Joel", imageName: "Image2"))
-        songs.append(Song(name: "Love, love, love", albumName: "Extension of a Man", artistName: "Donny Hathaway", imageName: "Image1"))
+        self.getItems()
+        if songs.isEmpty {
+            self.createItem(name: "Always", album: "Always", artist: "Daniel Caesar", image: "Image3")
+            self.createItem(name: "Just the Way You Are", album: "The Stranger", artist: "Billy Joel", image: "Image2")
+            self.createItem(name: "Love, love, love", album: "Extension of a Man", artist: "Donny Hathaway", image: "Image1")
+            self.createItem(name: "Always", album: "Always", artist: "Daniel Caesar", image: "Image3")
+            self.createItem(name: "Just the Way You Are", album: "The Stranger", artist: "Billy Joel", image: "Image2")
+            self.createItem(name: "Love, love, love", album: "Extension of a Man", artist: "Donny Hathaway", image: "Image1")
+            self.createItem(name: "Always", album: "Always", artist: "Daniel Caesar", image: "Image3")
+            self.createItem(name: "Just the Way You Are", album: "The Stranger", artist: "Billy Joel", image: "Image2")
+            self.createItem(name: "Love, love, love", album: "Extension of a Man", artist: "Donny Hathaway", image: "Image1")
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,10 +53,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let song = songs[indexPath.row]
         
         //configure
-        cell.textLabel?.text = song.name
+        cell.textLabel?.text = song.songName
         cell.detailTextLabel?.text = song.artistName
         cell.accessoryType = .disclosureIndicator
-        cell.imageView?.image = UIImage(named: song.imageName)
+        cell.imageView?.image = UIImage(named: song.imageName ?? "Image1")
         cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 18)
         cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 17)
         
@@ -78,7 +83,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            songs.remove(at: indexPath.row)
+            self.deleteItem(item: songs[indexPath.row])
+            self.getItems()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -155,20 +161,51 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.present(missingFieldAlert, animated: true)
                 return
             }
-            self.songs.append(Song(name: songName, albumName: albumName, artistName: artistName, imageName: imageName))
+            self.createItem(name: songName, album: albumName, artist: artistName, image: imageName)
             self.table.reloadData()
         }))
         
         present(alert, animated: true)
     }
-
-}
-
-
-
-struct Song{
-    let name: String
-    let albumName: String
-    let artistName: String
-    let imageName: String
+    
+    func getItems() {
+        do {
+            songs = try context.fetch(SongItem.fetchRequest())
+            
+            DispatchQueue.main.async {
+                self.table.reloadData()
+            }
+        }
+        catch {
+            //error handling
+        }
+    }
+    
+    func createItem(name: String, album: String, artist: String, image: String) {
+        let newItem = SongItem(context: context)
+        newItem.songName = name
+        newItem.albumName = album
+        newItem.artistName = artist
+        newItem.imageName = image
+        
+        do {
+            try context.save()
+            getItems()
+        }
+        catch {
+            //error handling
+        }
+    }
+    
+    func deleteItem(item: SongItem) {
+        context.delete(item)
+        
+        do {
+            try context.save()
+        }
+        catch {
+            //error handling
+        }
+    }
+    
 }
