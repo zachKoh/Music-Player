@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import UniformTypeIdentifiers
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
@@ -26,6 +27,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     private func configureBarButtons() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.pressedAddButton))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(self.getFiles))
     }
     
     func configureSongs(){
@@ -166,6 +168,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }))
         
         present(alert, animated: true)
+    }
+    
+    @objc func getFiles(){
+        let supportedTypes: [UTType] = [UTType.audio]
+        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: supportedTypes, asCopy: true)
+        pickerViewController.delegate = self
+        pickerViewController.allowsMultipleSelection = false
+        pickerViewController.shouldShowFileExtensions = true
+        self.present(pickerViewController, animated: true, completion: nil)
     }
     
     func getItems() {
