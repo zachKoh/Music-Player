@@ -171,13 +171,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func getFiles(){
-        let supportedTypes: [UTType] = [UTType.audio]
-        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: supportedTypes, asCopy: true)
+        /*let file = "\(UUID().uuidString).txt"
+        let contents = "Some text..."
+        
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = dir.appendingPathComponent(file)
+        
+        do {
+            try contents.write(to: fileURL, atomically: false, encoding: .utf8)
+        } catch {
+            print("error")
+        }*/
+        
+        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.audio], asCopy: true)
         pickerViewController.delegate = self
         pickerViewController.allowsMultipleSelection = false
         pickerViewController.shouldShowFileExtensions = true
         self.present(pickerViewController, animated: true, completion: nil)
     }
+    
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        
+        guard let selectedFileURL = urls.first else {
+            return
+        }
+        
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let sandboxFileURL = dir.appendingPathComponent(selectedFileURL.lastPathComponent)
+        
+        if FileManager.default.fileExists(atPath: sandboxFileURL.path) {
+            print("File already exists")
+        } else {
+            do {
+                try FileManager.default.copyItem(at:selectedFileURL, to: sandboxFileURL)
+                print("Copied file")
+            } catch {
+                print("error")
+            }
+        }
+    }
+    
     
     func getItems() {
         do {
