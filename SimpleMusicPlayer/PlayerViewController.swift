@@ -33,11 +33,13 @@ class PlayerViewController: UIViewController {
         
         // set up player
         let song = songs[position]
-        let path = Bundle.main.path(forResource: song.songName, ofType:"mp3")!
-        let url = URL(fileURLWithPath: path)
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let mp3URL = dir.appendingPathComponent(song.songName ?? "Love, love, love").appendingPathExtension("mp3")
+        //let path = Bundle.main.path(forResource: song.songName, ofType:"mp3")!
+        //let url = URL(fileURLWithPath: path)
         
         do {
-            musicPlaying = try AVAudioPlayer(contentsOf: url)
+            musicPlaying = try AVAudioPlayer(contentsOf: mp3URL)
             musicPlaying?.play()
         } catch {
             print("Error occured loading file...")
