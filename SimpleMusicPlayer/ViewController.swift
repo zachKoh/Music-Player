@@ -72,15 +72,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        //present the player
         let position = indexPath.row
+        
+        //present the player in normal mode
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "player") as? PlayerViewController else {
             return
         }
         vc.songs = songs
         vc.position = position
+        //vc.modalPresentationStyle = .fullScreen
         
         present(vc, animated: true)
+        
+        
+        //present car mode player
+        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -171,17 +177,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func getFiles(){
-        /*let file = "\(UUID().uuidString).txt"
-        let contents = "Some text..."
-        
-        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = dir.appendingPathComponent(file)
-        
-        do {
-            try contents.write(to: fileURL, atomically: false, encoding: .utf8)
-        } catch {
-            print("error")
-        }*/
         
         let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.audio], asCopy: true)
         pickerViewController.delegate = self
@@ -250,6 +245,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         catch {
             //error handling
+        }
+    }
+    
+    // Part of orientation locking
+    override func viewDidAppear(_ animated: Bool) {
+       super.viewDidAppear(animated)
+
+       AppUtility.lockOrientation(.portrait)
+       // Or to rotate and lock
+       // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+
+   }
+   
+   // Also part of orientation locking
+    override func viewWillDisappear(_ animated: Bool) {
+       super.viewWillDisappear(animated)
+
+       AppUtility.lockOrientation(.all)
+    }
+    
+    // Also part of orientation locking
+    struct AppUtility {
+
+        static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
+            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                delegate.orientationLock = orientation
+            }
+        }
+
+        static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
+            self.lockOrientation(orientation)
+            UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
         }
     }
     
