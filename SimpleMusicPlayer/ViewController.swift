@@ -75,6 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let position = indexPath.row
         
         //present the player in normal mode
+        /*
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "player") as? PlayerViewController else {
             return
         }
@@ -83,10 +84,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //vc.modalPresentationStyle = .fullScreen
         
         present(vc, animated: true)
-        
+        */
         
         //present car mode player
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "carPlayer") as? CarPlayerViewController else {
+            return
+        }
+        vc.songs = songs
+        vc.position = position
+        vc.modalPresentationStyle = .fullScreen
         
+        present(vc, animated: true) 
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
