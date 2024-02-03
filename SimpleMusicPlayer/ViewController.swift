@@ -19,10 +19,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSongs()
+        configureBarButtons()
         table.delegate = self
         table.dataSource = self
         title = "My Playlist"
-        configureBarButtons()
     }
     
     private func configureBarButtons() {
@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(self.getFiles))
     }
     
-    func configureSongs(){
+    private func configureSongs(){
         self.getItems()
         if songs.isEmpty {
             self.createItem(name: "Always", album: "Always", artist: "Daniel Caesar", image: "Image3")
