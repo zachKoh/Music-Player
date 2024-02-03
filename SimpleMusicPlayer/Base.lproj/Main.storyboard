@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Asr-6I-71f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xZa-A5-lxj">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
@@ -57,7 +57,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hWW-Wf-XXe" secondAttribute="bottom" id="fjG-rD-AAH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Playlist" selectedImage="house.fill" catalog="system" id="Rct-3f-lcI">
+                    <tabBarItem key="tabBarItem" title="" selectedImage="house.fill" catalog="system" id="Rct-3f-lcI">
                         <imageReference key="image" image="house" catalog="system" symbolScale="medium"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Music" id="6UZ-8K-dAB"/>
@@ -67,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="-2.1327014218009479"/>
+            <point key="canvasLocation" x="2702" y="-762"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="7rh-cL-Ia8">
@@ -92,18 +92,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTs-bH-8CB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="680"/>
+            <point key="canvasLocation" x="1931" y="-2"/>
         </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="Fsu-8U-MBP">
             <objects>
-                <viewController id="sg4-K3-HkI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Settings" id="sg4-K3-HkI" customClass="SettingsViewController" customModule="SimpleMusicPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tp0-b7-qOc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZy-bX-aPe">
-                                <rect key="frame" x="142" y="404" width="107" height="36"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O03-3R-Rm2">
+                                <rect key="frame" x="171" y="356" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="carModeSwitch:" destination="sg4-K3-HkI" eventType="valueChanged" id="0z9-Yb-ZAq"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Car Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZy-bX-aPe">
+                                <rect key="frame" x="131" y="300" width="128" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -113,11 +120,14 @@
                         <viewLayoutGuide key="safeArea" id="gPA-uV-JE0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="gearshape" catalog="system" selectedImage="gearshape.fill" id="0dO-55-baY"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" selectedImage="gearshape.fill" id="0dO-55-baY"/>
+                    <connections>
+                        <outlet property="onOffSwitch" destination="O03-3R-Rm2" id="dMJ-Nj-CzD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MWF-m8-5VF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2703" y="727"/>
+            <point key="canvasLocation" x="1931" y="762"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="2n7-wp-K4E">
@@ -213,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Pp-7G-EuG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2790.7692307692305" y="-2.1327014218009479"/>
+            <point key="canvasLocation" x="3588" y="-762"/>
         </scene>
         <!--Car Player View Controller-->
         <scene sceneID="o69-QR-HpT">
@@ -262,12 +272,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVw-oY-HdC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3436.9230769230767" y="-2.1327014218009479"/>
+            <point key="canvasLocation" x="4242" y="-762"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="Z5r-rH-6bt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Asr-6I-71f" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="0eN-ev-fO1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="KwR-OK-FLX">
                         <rect key="frame" x="0.0" y="47" width="390" height="96"/>
@@ -275,12 +286,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="xZa-A5-lxj" kind="relationship" relationship="rootViewController" id="DYq-Z9-5pc"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rXj-xE-5h6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mJ4-uB-pr0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121.53846153846153" y="-2.1327014218009479"/>
+            <point key="canvasLocation" x="1931" y="-762"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pJ2-Lt-Y9B">
@@ -289,13 +300,14 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Oob-QK-voJ"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rxo-Mq-NVP">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="h3W-LQ-iF0"/>
-                        <segue destination="4Kj-Iz-gf7" kind="relationship" relationship="viewControllers" id="fsH-DF-UN6"/>
-                        <segue destination="sg4-K3-HkI" kind="relationship" relationship="viewControllers" id="n4Q-Y1-edI"/>
+                        <segue destination="Asr-6I-71f" kind="relationship" relationship="viewControllers" id="PW1-12-8Ll"/>
+                        <segue destination="4Kj-Iz-gf7" kind="relationship" relationship="viewControllers" id="Rik-dx-Jac"/>
+                        <segue destination="sg4-K3-HkI" kind="relationship" relationship="viewControllers" id="gZV-ec-vUm"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qs8-aT-Kcg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
