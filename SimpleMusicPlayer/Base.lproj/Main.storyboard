@@ -72,15 +72,22 @@
         <!--Statistics-->
         <scene sceneID="7rh-cL-Ia8">
             <objects>
-                <viewController id="4Kj-Iz-gf7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StatisticsVC" id="4Kj-Iz-gf7" customClass="StatisticsViewController" customModule="SimpleMusicPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7ym-Jp-Zpg">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistics page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRv-ae-tcc">
-                                <rect key="frame" x="103" y="405" width="185" height="35"/>
+                                <rect key="frame" x="103" y="173" width="185" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P02-6T-727">
+                                <rect key="frame" x="174" y="216" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -89,6 +96,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Statistics" image="chart.bar" catalog="system" selectedImage="chart.bar.fill" id="it6-Or-hG5"/>
+                    <connections>
+                        <outlet property="PlayCountLabel" destination="P02-6T-727" id="fqJ-96-Law"/>
+                        <outlet property="SongNameLabel" destination="hRv-ae-tcc" id="97N-HZ-06A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTs-bH-8CB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -22,6 +22,7 @@
 		8422640A2B6BD3BB0087D265 /* CarPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842264092B6BD3BB0087D265 /* CarPlayerViewController.swift */; };
 		845752332B0F644500080311 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845752322B0F644400080311 /* PlayerViewController.swift */; };
 		845BB7F02B6F034300902E49 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845BB7EF2B6F034300902E49 /* SettingsViewController.swift */; };
+		845BB7F22B70373D00902E49 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845BB7F12B70373D00902E49 /* StatisticsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		842264092B6BD3BB0087D265 /* CarPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayerViewController.swift; sourceTree = "<group>"; };
 		845752322B0F644400080311 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		845BB7EF2B6F034300902E49 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		845BB7F12B70373D00902E49 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				8406CFA12B039C990085B373 /* AppDelegate.swift */,
 				8406CFA32B039C990085B373 /* SceneDelegate.swift */,
 				8406CFA52B039C990085B373 /* ViewController.swift */,
+				845BB7F12B70373D00902E49 /* StatisticsViewController.swift */,
 				8406CFA72B039C990085B373 /* Main.storyboard */,
 				845BB7EF2B6F034300902E49 /* SettingsViewController.swift */,
 				842264092B6BD3BB0087D265 /* CarPlayerViewController.swift */,
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8406CFA62B039C990085B373 /* ViewController.swift in Sources */,
+				845BB7F22B70373D00902E49 /* StatisticsViewController.swift in Sources */,
 				842264072B68032F0087D265 /* SongItem+CoreDataProperties.swift in Sources */,
 				8422640A2B6BD3BB0087D265 /* CarPlayerViewController.swift in Sources */,
 				8406CFA22B039C990085B373 /* AppDelegate.swift in Sources */,

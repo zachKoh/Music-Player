@@ -10,6 +10,8 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     
+    let userDefaults = UserDefaults.standard
+    
     public var position: Int = 0
     public var songs: [SongItem] = []
     var musicPlaying: AVAudioPlayer?
@@ -58,6 +60,12 @@ class PlayerViewController: UIViewController {
         trackName.text = song.songName
         artistName.text = song.artistName
         
+        print(song.songName ?? "Love, love, love")
+        var playCount = userDefaults.integer(forKey: song.songName ?? "Love, love, love")
+        playCount += 1
+        print("Play count is...")
+        print(playCount)
+        userDefaults.set(playCount, forKey: song.songName ?? "Love, love, love")
     }
 
     
