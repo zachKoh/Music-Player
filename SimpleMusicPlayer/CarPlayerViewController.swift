@@ -10,6 +10,8 @@ import UIKit
 
 class CarPlayerViewController: UIViewController {
     
+    let userDefaults = UserDefaults.standard
+    
     public var position: Int = 0
     public var songs: [SongItem] = []
     var musicPlaying: AVAudioPlayer?
@@ -42,10 +44,9 @@ class CarPlayerViewController: UIViewController {
         
         // set up player
         let song = songs[position]
+        let songName = song.songName ?? "Love, love, love"
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let mp3URL = dir.appendingPathComponent(song.songName ?? "Love, love, love").appendingPathExtension("mp3")
-        //let path = Bundle.main.path(forResource: song.songName, ofType:"mp3")!
-        //let url = URL(fileURLWithPath: path)
         
         do {
             musicPlaying = try AVAudioPlayer(contentsOf: mp3URL)
@@ -57,6 +58,29 @@ class CarPlayerViewController: UIViewController {
         songNameLabel.text = song.songName
         artistNameLabel.text = song.artistName
         
+        //.................
+        // Statistics stuff
+        //.................
+        
+        // Increment the play count for song that is being played in userDefaults
+        var playCount = userDefaults.integer(forKey: songName)
+        playCount += 1
+        userDefaults.set(playCount, forKey: songName)
+        
+        
+        
+        // Add song name to song list array if not already there
+        var playedSongs = userDefaults.stringArray(forKey: "PlayedSongs")
+        // Initialize array if nil
+        if(playedSongs == nil) {
+            playedSongs = [String]()
+        }
+        if(playedSongs!.contains(songName)) {
+            print("That song has been added already")
+        } else {
+            playedSongs?.append(songName)
+        }
+        userDefaults.set(playedSongs, forKey: "PlayedSongs")
     }
     
     @IBAction func pressedBack(_ sender: Any) {

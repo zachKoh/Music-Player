@@ -38,8 +38,6 @@ class PlayerViewController: UIViewController {
         let songName = song.songName ?? "Love, love, love"
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let mp3URL = dir.appendingPathComponent(songName).appendingPathExtension("mp3")
-        //let path = Bundle.main.path(forResource: song.songName, ofType:"mp3")!
-        //let url = URL(fileURLWithPath: path)
         
         do {
             musicPlaying = try AVAudioPlayer(contentsOf: mp3URL)
@@ -75,9 +73,6 @@ class PlayerViewController: UIViewController {
         
         // Add song name to song list array if not already there
         var playedSongs = userDefaults.stringArray(forKey: "PlayedSongs")
-        
-        //playedSongs = [String]()
-        
         // Initialize array if nil
         if(playedSongs == nil) {
             playedSongs = [String]()
@@ -87,7 +82,6 @@ class PlayerViewController: UIViewController {
         } else {
             playedSongs?.append(songName)
         }
-        print(playedSongs as Any)
         userDefaults.set(playedSongs, forKey: "PlayedSongs")
     }
 
