@@ -35,8 +35,9 @@ class PlayerViewController: UIViewController {
         
         // set up player
         let song = songs[position]
+        let songName = song.songName ?? "Love, love, love"
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let mp3URL = dir.appendingPathComponent(song.songName ?? "Love, love, love").appendingPathExtension("mp3")
+        let mp3URL = dir.appendingPathComponent(songName).appendingPathExtension("mp3")
         //let path = Bundle.main.path(forResource: song.songName, ofType:"mp3")!
         //let url = URL(fileURLWithPath: path)
         
@@ -60,12 +61,34 @@ class PlayerViewController: UIViewController {
         trackName.text = song.songName
         artistName.text = song.artistName
         
-        print(song.songName ?? "Love, love, love")
-        var playCount = userDefaults.integer(forKey: song.songName ?? "Love, love, love")
+        
+        //.................
+        // Statistics stuff
+        //.................
+        
+        // Increment the play count for song that is being played in userDefaults
+        var playCount = userDefaults.integer(forKey: songName)
         playCount += 1
-        print("Play count is...")
-        print(playCount)
-        userDefaults.set(playCount, forKey: song.songName ?? "Love, love, love")
+        userDefaults.set(playCount, forKey: songName)
+        
+        
+        
+        // Add song name to song list array if not already there
+        var playedSongs = userDefaults.stringArray(forKey: "PlayedSongs")
+        
+        //playedSongs = [String]()
+        
+        // Initialize array if nil
+        if(playedSongs == nil) {
+            playedSongs = [String]()
+        }
+        if(playedSongs!.contains(songName)) {
+            print("That song has been added already")
+        } else {
+            playedSongs?.append(songName)
+        }
+        print(playedSongs as Any)
+        userDefaults.set(playedSongs, forKey: "PlayedSongs")
     }
 
     
