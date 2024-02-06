@@ -33,6 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     private func configureSongs(){
         self.getItems()
+        // Sample songs when app is first downloaded
         if songs.isEmpty {
             self.createItem(name: "Always", album: "Always", artist: "Daniel Caesar", image: "Image3")
             self.createItem(name: "Just the Way You Are", album: "The Stranger", artist: "Billy Joel", image: "Image2")
