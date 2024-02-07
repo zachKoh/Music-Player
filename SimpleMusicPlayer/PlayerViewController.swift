@@ -78,7 +78,7 @@ class PlayerViewController: UIViewController {
             playedSongs = [String]()
         }
         if(playedSongs!.contains(songName)) {
-            print("That song has been added already")
+            //Song has already been added
         } else {
             playedSongs?.append(songName)
         }

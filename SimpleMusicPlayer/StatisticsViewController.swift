@@ -17,7 +17,6 @@ class StatisticsViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         table.delegate = self
         table.dataSource = self
-        let playCount = userDefaults.integer(forKey: "Always")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -25,7 +24,9 @@ class StatisticsViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let PlayedSongs = userDefaults.stringArray(forKey: "PlayedSongs")!
+        guard let PlayedSongs = userDefaults.stringArray(forKey: "PlayedSongs") else {
+            return 0
+        }
         return PlayedSongs.count
     }
     
@@ -38,7 +39,7 @@ class StatisticsViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func rankSongsByPlays() -> [song] {
-        var PlayedSongs = userDefaults.stringArray(forKey: "PlayedSongs")!
+        let PlayedSongs = userDefaults.stringArray(forKey: "PlayedSongs")!
         var rankedSongs = [song]()
         for i in 0..<PlayedSongs.count {
             rankedSongs.append(song(name: PlayedSongs[i], plays: userDefaults.integer(forKey: PlayedSongs[i])))
