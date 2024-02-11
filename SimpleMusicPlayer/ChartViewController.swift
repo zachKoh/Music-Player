@@ -10,6 +10,13 @@ import SwiftUI
 import SnapKit
 
 class ChartViewController: UIViewController {
+    
+    var artists: [artist] = [
+        artist(name: "Billy Joel", plays: 6),
+        artist(name: "Daniel Ceasar", plays: 5),
+        artist(name: "The Beatles", plays: 3),
+        artist(name: "Donny Hathaway", plays: 1),
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +24,7 @@ class ChartViewController: UIViewController {
     }
     
     func setupView() {
-        let controller = UIHostingController(rootView: SwiftUIChart())
+        let controller = UIHostingController(rootView: SwiftUIChart(artists: artists))
         guard let chartView = controller.view else {
             return
         }

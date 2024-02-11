@@ -8,34 +8,30 @@
 import SwiftUI
 import Charts
 
-struct MacroData {
+struct artist {
     let name: String
-    let value: Int
+    let plays: Int
 }
 
 struct SwiftUIChart: View {
     
-    @State private var macros: [MacroData] = [
-        .init(name: "Protein", value: 180),
-        .init(name: "Carbs", value: 250),
-        .init(name: "Fats", value: 55)
-    ]
+    var artists: [artist]
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Macros")
+            Text("Favorite Artists")
                 .font(.title2)
                 .fontWeight(.semibold)
-            Text("Daily breakdown")
+            Text("By amount of plays...")
                 .font(.footnote)
                 .foregroundStyle(.gray)
             
-            Chart(macros, id: \.name) { macro in
+            Chart(artists, id: \.name) { artist in
                 BarMark(
-                    x: .value("Macros", macro.value),
+                    x: .value("Macros", artist.plays),
                     stacking: .normalized
                 )
-                .foregroundStyle(by: .value("Name", macro.name))
+                .foregroundStyle(by: .value("Name", artist.name))
             }
             .frame(height:48)
             .chartXAxis(.hidden)
