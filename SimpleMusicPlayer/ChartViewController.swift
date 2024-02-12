@@ -11,16 +11,18 @@ import SnapKit
 
 class ChartViewController: UIViewController {
     
-    var artists: [artist] = [
-        artist(name: "Billy Joel", plays: 6),
-        artist(name: "Daniel Ceasar", plays: 5),
-        artist(name: "The Beatles", plays: 3),
-        artist(name: "Donny Hathaway", plays: 1),
-    ]
-
+    var artists: [artist] = []
+    let userDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+    }
+    
+    func setupStats() {
+        let rankedSongs = rankArtistsByPlays()
+        let totalPlays = calcTotalPlays()
+        
     }
     
     func setupView() {
@@ -38,5 +40,25 @@ class ChartViewController: UIViewController {
             make.height.equalTo(500)
         }
     }
-
+    
+    private func rankArtistsByPlays() -> [song] {
+        let playedArtists = userDefaults.stringArray(forKey: "PlayedArtists")!
+        var rankedArtists = [song]()
+        for i in 0..<playedArtists.count {
+            rankedArtists.append(song(name: playedArtists[i], plays: userDefaults.integer(forKey: playedArtists[i])))
+        }
+        let sortedArtists = rankedArtists.sorted {
+            $0.plays > $1.plays
+        }
+        return sortedArtists
+    }
+    
+    private func calcTotalPlays() -> Int {
+        let playedSongs = userDefaults.stringArray(forKey: "PlayedSongs")!
+        var totalPlays: Int = 0
+        for i in 0..<playedSongs.count {
+            totalPlays = totalPlays + userDefaults.integer(forKey: playedSongs[i])
+        }
+        return totalPlays
+    }
 }
