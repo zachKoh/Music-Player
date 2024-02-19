@@ -317,6 +317,33 @@
             </objects>
             <point key="canvasLocation" x="4242" y="-762"/>
         </scene>
+        <!--Abstract Player View Controller-->
+        <scene sceneID="CYo-yX-kht">
+            <objects>
+                <viewController storyboardIdentifier="AbstractPlayer" id="WCQ-Rp-ggj" customClass="AbstractPlayerViewController" customModule="SimpleMusicPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GTy-2h-XGc">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GCS-CZ-qTp">
+                                <rect key="frame" x="75" y="358" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SCc-ho-EPX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GCS-CZ-qTp" firstAttribute="centerX" secondItem="GTy-2h-XGc" secondAttribute="centerX" id="X0W-lt-bqY"/>
+                            <constraint firstItem="GCS-CZ-qTp" firstAttribute="centerY" secondItem="GTy-2h-XGc" secondAttribute="centerY" id="vJH-U6-nqh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="image" destination="GCS-CZ-qTp" id="Ajy-Of-Lkm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y4z-ZA-620" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4891" y="-762"/>
+        </scene>
         <!--Item-->
         <scene sceneID="Z5r-rH-6bt">
             <objects>

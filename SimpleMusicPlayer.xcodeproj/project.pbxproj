@@ -17,6 +17,7 @@
 		8406CFBC2B039C9E0085B373 /* SimpleMusicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406CFBB2B039C9E0085B373 /* SimpleMusicPlayerTests.swift */; };
 		8406CFC62B039C9E0085B373 /* SimpleMusicPlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406CFC52B039C9E0085B373 /* SimpleMusicPlayerUITests.swift */; };
 		8406CFC82B039C9E0085B373 /* SimpleMusicPlayerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406CFC72B039C9E0085B373 /* SimpleMusicPlayerUITestsLaunchTests.swift */; };
+		840BDB282B83A630005094F3 /* AbstractPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840BDB272B83A630005094F3 /* AbstractPlayerViewController.swift */; };
 		842264062B68032F0087D265 /* SongItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842264042B68032F0087D265 /* SongItem+CoreDataClass.swift */; };
 		842264072B68032F0087D265 /* SongItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842264052B68032F0087D265 /* SongItem+CoreDataProperties.swift */; };
 		8422640A2B6BD3BB0087D265 /* CarPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842264092B6BD3BB0087D265 /* CarPlayerViewController.swift */; };
@@ -68,6 +69,7 @@
 		8406CFC12B039C9E0085B373 /* SimpleMusicPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleMusicPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8406CFC52B039C9E0085B373 /* SimpleMusicPlayerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMusicPlayerUITests.swift; sourceTree = "<group>"; };
 		8406CFC72B039C9E0085B373 /* SimpleMusicPlayerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMusicPlayerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		840BDB272B83A630005094F3 /* AbstractPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractPlayerViewController.swift; sourceTree = "<group>"; };
 		842264042B68032F0087D265 /* SongItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SongItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		842264052B68032F0087D265 /* SongItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SongItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		842264092B6BD3BB0087D265 /* CarPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayerViewController.swift; sourceTree = "<group>"; };
@@ -76,7 +78,7 @@
 		845BB7F12B70373D00902E49 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		845BB7F32B739AE400902E49 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		845BB7F52B739CC500902E49 /* SwiftUIChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIChart.swift; sourceTree = "<group>"; };
-		845BB7F72B73A9CA00902E49 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		845BB7F72B73A9CA00902E49 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8E754602E5741F3D9457560E /* Pods_SimpleMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC1736709938EBA7DA708A3 /* Pods_SimpleMusicPlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMusicPlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B840C62676BF38AE4E41DA1F /* Pods-SimpleMusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMusicPlayer.debug.xcconfig"; path = "Target Support Files/Pods-SimpleMusicPlayer/Pods-SimpleMusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -121,7 +123,6 @@
 				58A43A80178E1094B8573E78 /* Pods-SimpleMusicPlayerTests.debug.xcconfig */,
 				6FB9345204B7776EB806B158 /* Pods-SimpleMusicPlayerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -138,6 +139,7 @@
 		8406CF952B039C990085B373 = {
 			isa = PBXGroup;
 			children = (
+				840BDB272B83A630005094F3 /* AbstractPlayerViewController.swift */,
 				845BB7F72B73A9CA00902E49 /* Podfile */,
 				8406CFA02B039C990085B373 /* SimpleMusicPlayer */,
 				8406CFBA2B039C9E0085B373 /* SimpleMusicPlayerTests */,
@@ -452,6 +454,7 @@
 				8422640A2B6BD3BB0087D265 /* CarPlayerViewController.swift in Sources */,
 				8406CFA22B039C990085B373 /* AppDelegate.swift in Sources */,
 				8406CFAC2B039C990085B373 /* SimpleMusicPlayer.xcdatamodeld in Sources */,
+				840BDB282B83A630005094F3 /* AbstractPlayerViewController.swift in Sources */,
 				845BB7F62B739CC500902E49 /* SwiftUIChart.swift in Sources */,
 				8406CFA42B039C990085B373 /* SceneDelegate.swift in Sources */,
 				845752332B0F644500080311 /* PlayerViewController.swift in Sources */,

@@ -8,14 +8,16 @@
 import SwiftUI
 import Charts
 
-struct artist {
-    let name: String
-    let plays: Int
-}
+/**
+ struct artistObj {
+     let name: String
+     let plays: Int
+ }
+ */
 
 struct SwiftUIChart: View {
     
-    var artists: [artist]
+    var artists: [artistObj]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,12 +28,12 @@ struct SwiftUIChart: View {
                 .font(.footnote)
                 .foregroundStyle(.gray)
             
-            Chart(artists, id: \.name) { artist in
+            Chart(artists, id: \.name) { artistObj in
                 BarMark(
-                    x: .value("Macros", artist.plays),
+                    x: .value("Macros", artistObj.plays),
                     stacking: .normalized
                 )
-                .foregroundStyle(by: .value("Name", artist.name))
+                .foregroundStyle(by: .value("Name", artistObj.name))
             }
             .frame(height:48)
             .chartXAxis(.hidden)

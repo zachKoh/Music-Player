@@ -11,7 +11,6 @@ import SnapKit
 
 class ChartViewController: UIViewController {
     
-    var artists: [artist] = []
     let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
@@ -26,6 +25,7 @@ class ChartViewController: UIViewController {
     }
     
     func setupView() {
+        var artists = [artistObj]()
         let controller = UIHostingController(rootView: SwiftUIChart(artists: artists))
         guard let chartView = controller.view else {
             return
@@ -61,4 +61,9 @@ class ChartViewController: UIViewController {
         }
         return totalPlays
     }
+}
+
+struct artistObj {
+    let name: String
+    let plays: Int
 }
