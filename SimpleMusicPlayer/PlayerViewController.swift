@@ -84,7 +84,7 @@ class PlayerViewController: UIViewController {
         
         
         // Increment the play count for artist that is being played in userDefaults
-        guard var artist: String = song.artistName else {
+        guard let artist: String = song.artistName else {
             return // Error handling
         }
         var artistPlayCount = userDefaults.integer(forKey: artist)

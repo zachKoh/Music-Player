@@ -67,8 +67,6 @@ class CarPlayerViewController: UIViewController {
         playCount += 1
         userDefaults.set(playCount, forKey: songName)
         
-        
-        
         // Add song name to song list array if not already there
         var playedSongs = userDefaults.stringArray(forKey: "PlayedSongs")
         // Initialize array if nil
@@ -81,6 +79,29 @@ class CarPlayerViewController: UIViewController {
             playedSongs?.append(songName)
         }
         userDefaults.set(playedSongs, forKey: "PlayedSongs")
+        
+        
+        
+        // Increment the play count for artist that is being played in userDefaults
+        guard let artist: String = song.artistName else {
+            return // Error handling
+        }
+        var artistPlayCount = userDefaults.integer(forKey: artist)
+        artistPlayCount += 1
+        userDefaults.set(artistPlayCount, forKey: artist)
+        
+        // Add artist name to played songs array if not already there
+        var playedArtists = userDefaults.stringArray(forKey: "PlayedArtists")
+        // Initialize array if nil
+        if(playedArtists == nil) {
+            playedArtists = [String]()
+        }
+        if(playedArtists!.contains(artist)) {
+            //Song has already been added
+        } else {
+            playedArtists?.append(artist)
+        }
+        userDefaults.set(playedArtists, forKey: "PlayedArtists")
     }
     
     @IBAction func pressedBack(_ sender: Any) {

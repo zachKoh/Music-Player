@@ -13,19 +13,21 @@ class ChartViewController: UIViewController {
     
     let userDefaults = UserDefaults.standard
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        setupStats()
         setupView()
     }
     
     func setupStats() {
-        let rankedSongs = rankArtistsByPlays()
+        let rankedArtists = rankArtistsByPlays()
+        //For "others" section
         let totalPlays = calcTotalPlays()
-        
+        print(rankedArtists)
+        print(totalPlays)
     }
     
     func setupView() {
-        var artists = [artistObj]()
+        let artists = rankArtistsByPlays()
         let controller = UIHostingController(rootView: SwiftUIChart(artists: artists))
         guard let chartView = controller.view else {
             return
@@ -41,11 +43,11 @@ class ChartViewController: UIViewController {
         }
     }
     
-    private func rankArtistsByPlays() -> [song] {
+    private func rankArtistsByPlays() -> [artistObj] {
         let playedArtists = userDefaults.stringArray(forKey: "PlayedArtists")!
-        var rankedArtists = [song]()
+        var rankedArtists = [artistObj]()
         for i in 0..<playedArtists.count {
-            rankedArtists.append(song(name: playedArtists[i], plays: userDefaults.integer(forKey: playedArtists[i])))
+            rankedArtists.append(artistObj(name: playedArtists[i], plays: userDefaults.integer(forKey: playedArtists[i])))
         }
         let sortedArtists = rankedArtists.sorted {
             $0.plays > $1.plays
