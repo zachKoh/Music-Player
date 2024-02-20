@@ -5,41 +5,47 @@
 //  Created by Admin on 14/02/2024.
 //
 
+import AVFoundation
 import UIKit
 
 class AbstractPlayerViewController: UIViewController {
     
     @IBOutlet weak var image: UIImageView!
+    let userDefaults = UserDefaults.standard
+    
+    public var position: Int = 0
+    public var songs: [SongItem] = []
+    var musicPlaying: AVAudioPlayer?
     
     override func viewDidLoad() {
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let song = songs[position]
+        guard let songName = song.songName else { return }
         super.viewDidLoad()
-        // Usage example:
-        let randomString = "Always"
+        configure()
+        
         let imageSize = CGSize(width: 200, height: 200)
 
-        if let generatedImage = generateImage(from: randomString, size: imageSize) {
-            // Use the generated image
-            // For example, display it in an image view
+        if let generatedImage = generateImage(from: songName, size: imageSize) {
             let imageView = UIImageView(image: generatedImage)
             image.addSubview(imageView)
         } else {
             print("Failed to generate image")
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
 
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
         //Initial colors
         gradientLayer.colors = [UIColor.black.cgColor, UIColor.darkGray.cgColor]
         
-        let string = "Daniel Caesar"
-        
         let newColors = [
-            generateColor(from: string),
-            generateColorUsingFNV1a(from: string)
+            generateColor(from: songName),
+            generateColorUsingFNV1a(from: songName)
         ]
 
         gradientLayer.setColors(newColors,
@@ -49,6 +55,68 @@ class AbstractPlayerViewController: UIViewController {
 
         view.layer.insertSublayer(gradientLayer, at:0)
     }
+    
+    
+    func configure() {
+        
+        // set up player
+        let song = songs[position]
+        guard let songName = song.songName else { return }
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let mp3URL = dir.appendingPathComponent(song.songName ?? "Love, love, love").appendingPathExtension("mp3")
+        
+        do {
+            musicPlaying = try AVAudioPlayer(contentsOf: mp3URL)
+            musicPlaying?.play()
+        } catch {
+            print("Error occured loading file...")
+        }
+        
+        //.................
+        // Statistics stuff
+        //.................
+        
+        // Increment the play count for song that is being played in userDefaults
+        var playCount = userDefaults.integer(forKey: songName)
+        playCount += 1
+        userDefaults.set(playCount, forKey: songName)
+        
+        // Add song name to song list array if not already there
+        var playedSongs = userDefaults.stringArray(forKey: "PlayedSongs")
+        // Initialize array if nil
+        if(playedSongs == nil) {
+            playedSongs = [String]()
+        }
+        if(playedSongs!.contains(songName)) {
+            print("That song has been added already")
+        } else {
+            playedSongs?.append(songName)
+        }
+        userDefaults.set(playedSongs, forKey: "PlayedSongs")
+        
+        
+        // Increment the play count for artist that is being played in userDefaults
+        guard let artist: String = song.artistName else {
+            return // Error handling
+        }
+        var artistPlayCount = userDefaults.integer(forKey: artist)
+        artistPlayCount += 1
+        userDefaults.set(artistPlayCount, forKey: artist)
+        
+        // Add artist name to played songs array if not already there
+        var playedArtists = userDefaults.stringArray(forKey: "PlayedArtists")
+        // Initialize array if nil
+        if(playedArtists == nil) {
+            playedArtists = [String]()
+        }
+        if(playedArtists!.contains(artist)) {
+            //Song has already been added
+        } else {
+            playedArtists?.append(artist)
+        }
+        userDefaults.set(playedArtists, forKey: "PlayedArtists")
+    }
+    
     
     func generateImage(from string: String, size: CGSize) -> UIImage? {
         // Create a graphics context

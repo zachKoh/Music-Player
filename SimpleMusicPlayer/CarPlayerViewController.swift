@@ -81,7 +81,6 @@ class CarPlayerViewController: UIViewController {
         userDefaults.set(playedSongs, forKey: "PlayedSongs")
         
         
-        
         // Increment the play count for artist that is being played in userDefaults
         guard let artist: String = song.artistName else {
             return // Error handling

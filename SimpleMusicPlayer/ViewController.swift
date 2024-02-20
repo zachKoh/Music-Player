@@ -75,9 +75,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.deselectRow(at: indexPath, animated: true)
         
         let position = indexPath.row
+        let playerMode = userDefaults.string(forKey: "playerMode")
         
-        if(userDefaults.bool(forKey: "onOffKey")) {
-            
+        if(playerMode == "carPlayer") {
             //present car mode player
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "carPlayer") as? CarPlayerViewController else {
                 return
@@ -85,22 +85,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             vc.songs = songs
             vc.position = position
             vc.modalPresentationStyle = .fullScreen
-            
             present(vc, animated: true)
-            
-        } else {
-            
+        } else if(playerMode == "normalPlayer"){
             //present the player in normal mode
-            
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "player") as? PlayerViewController else {
                 return
             }
             vc.songs = songs
             vc.position = position
-            //vc.modalPresentationStyle = .fullScreen
-            
             present(vc, animated: true)
-            
+        } else if(playerMode == "abstractPlayer") {
+            //present abstract player
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "abstractPlayer") as? AbstractPlayerViewController else {
+                return
+            }
+            vc.songs = songs
+            vc.position = position
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         }
     }
     
