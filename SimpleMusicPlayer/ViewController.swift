@@ -96,7 +96,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             present(vc, animated: true)
         } else if(playerMode == "abstractPlayer") {
             //present abstract player
-            guard let vc = storyboard?.instantiateViewController(withIdentifier: "abstractPlayer") as? AbstractPlayerViewController else {
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "AbstractPlayer") as? AbstractPlayerViewController else {
                 return
             }
             vc.songs = songs

@@ -9,29 +9,38 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    @IBOutlet weak var onOffSwitch: UISwitch!
+    @IBOutlet weak var modeSegment: UISegmentedControl!
     
     let userDefaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkSwitchState()
+        updateMode()
     }
     
-    func checkSwitchState() {
-        if(userDefaults.bool(forKey: "onOffKey")) {
-            onOffSwitch.setOn(true, animated:false)
-        } else {
-            onOffSwitch.setOn(false, animated: false)
+    func updateMode() {
+        let playerMode = userDefaults.string(forKey: "playerMode")
+        if (playerMode == "normalPlayer") {
+            modeSegment.selectedSegmentIndex = 0
+        }
+        else if (playerMode == "carPlayer"){
+            modeSegment.selectedSegmentIndex = 1
+        }
+        else if (playerMode == "abstractPlayer"){
+            modeSegment.selectedSegmentIndex = 2
         }
     }
-
-    @IBAction func carModeSwitch(_ sender: Any) {
-        if(onOffSwitch.isOn) {
-            userDefaults.set(true, forKey: "onOffKey")
-        }
-        else {
-            userDefaults.set(false, forKey: "onOffKey")
+    
+    @IBAction func changedMode(_ sender: Any) {
+        switch modeSegment.selectedSegmentIndex {
+        case 0:
+            userDefaults.set("normalPlayer", forKey: "playerMode")
+        case 1:
+            userDefaults.set("carPlayer", forKey: "playerMode")
+        case 2:
+            userDefaults.set("abstractPlayer", forKey: "playerMode")
+        default:
+            userDefaults.set("normalPlayer", forKey: "playerMode")
         }
     }
 }
