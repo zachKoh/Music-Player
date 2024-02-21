@@ -17,27 +17,18 @@ class AbstractPlayerViewController: UIViewController {
     public var songs: [SongItem] = []
     var musicPlaying: AVAudioPlayer?
     
-    override func viewDidLoad() {
-        
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let song = songs[position]
-        guard let songName = song.songName else { return }
+        setUpGestures()
         super.viewDidLoad()
         configure()
-        
-        let imageSize = CGSize(width: 200, height: 200)
-
-        if let generatedImage = generateImage(from: songName, size: imageSize) {
-            let imageView = UIImageView(image: generatedImage)
-            image.addSubview(imageView)
-        } else {
-            print("Failed to generate image")
-        }
-
+        setUpVisuals()
+    }
+    
+    func setUpVisuals() {
+        let song = songs[position]
+        guard let songName = song.songName else { return }
+        //Add the background colour
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
         //Initial colors
@@ -54,8 +45,61 @@ class AbstractPlayerViewController: UIViewController {
                                 timingFunctionName: .linear)
 
         view.layer.insertSublayer(gradientLayer, at:0)
+        
+        //Add the generated image
+        let imageSize = CGSize(width: 200, height: 200)
+        if let generatedImage = generateImage(from: songName, size: imageSize) {
+            let imageView = UIImageView(image: generatedImage)
+            image.addSubview(imageView)
+            image.superview?.bringSubviewToFront(image)
+        } else {
+            print("Failed to generate image")
+        }
     }
     
+    func setUpGestures() {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipedLeft))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipedRight))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let doubleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        doubleTap.numberOfTapsRequired = 2
+        self.view.addGestureRecognizer(doubleTap)
+    }
+    
+    @objc func swipedLeft() {
+        if position < (songs.count - 1) {
+            position = position + 1
+            musicPlaying?.stop()
+            configure()
+            setUpVisuals()
+        }
+    }
+    
+    @objc func swipedRight() {
+        if position > 0 {
+            position = position - 1
+            musicPlaying?.stop()
+            configure()
+            setUpVisuals()
+        }
+    }
+    
+    @objc func doubleTapped() {
+        if !musicPlaying!.isPlaying {
+            musicPlaying?.play()
+        } else {
+            musicPlaying?.pause()
+        }
+    }
+    
+    @IBAction func pressedBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func configure() {
         
