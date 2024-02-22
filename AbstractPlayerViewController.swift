@@ -26,6 +26,11 @@ class AbstractPlayerViewController: UIViewController {
     }
     
     func setUpVisuals() {
+        // Remove existing gradient layer if exists
+        if let existingGradientLayer = view.layer.sublayers?.first(where: { $0 is CAGradientLayer }) {
+            existingGradientLayer.removeFromSuperlayer()
+        }
+        
         let song = songs[position]
         guard let songName = song.songName else { return }
         //Add the background colour
