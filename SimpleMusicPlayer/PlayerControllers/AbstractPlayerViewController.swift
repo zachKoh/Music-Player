@@ -137,7 +137,7 @@ class AbstractPlayerViewController: UIViewController {
             playedSongs = [String]()
         }
         if(playedSongs!.contains(songName)) {
-            print("That song has been added already")
+            //That song has been added already do nothing
         } else {
             playedSongs?.append(songName)
         }

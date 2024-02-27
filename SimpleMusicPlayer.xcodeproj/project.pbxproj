@@ -139,7 +139,6 @@
 		8406CF952B039C990085B373 = {
 			isa = PBXGroup;
 			children = (
-				840BDB272B83A630005094F3 /* AbstractPlayerViewController.swift */,
 				845BB7F72B73A9CA00902E49 /* Podfile */,
 				8406CFA02B039C990085B373 /* SimpleMusicPlayer */,
 				8406CFBA2B039C9E0085B373 /* SimpleMusicPlayerTests */,
@@ -163,21 +162,18 @@
 		8406CFA02B039C990085B373 /* SimpleMusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				8406CFA72B039C990085B373 /* Main.storyboard */,
 				842264082B6803560087D265 /* SongItem */,
-				8406CFA12B039C990085B373 /* AppDelegate.swift */,
-				8406CFA32B039C990085B373 /* SceneDelegate.swift */,
+				84A395B22B8792D100A981A0 /* Delegates */,
+				84A395B42B87932300A981A0 /* PlayerControllers */,
 				8406CFA52B039C990085B373 /* ViewController.swift */,
 				845BB7F12B70373D00902E49 /* StatisticsViewController.swift */,
-				8406CFA72B039C990085B373 /* Main.storyboard */,
 				845BB7F32B739AE400902E49 /* ChartViewController.swift */,
 				845BB7F52B739CC500902E49 /* SwiftUIChart.swift */,
 				845BB7EF2B6F034300902E49 /* SettingsViewController.swift */,
-				842264092B6BD3BB0087D265 /* CarPlayerViewController.swift */,
-				8406CFAD2B039C9D0085B373 /* Assets.xcassets */,
-				8406CFAF2B039C9D0085B373 /* LaunchScreen.storyboard */,
-				8406CFB22B039C9D0085B373 /* Info.plist */,
 				8406CFAA2B039C990085B373 /* SimpleMusicPlayer.xcdatamodeld */,
-				845752322B0F644400080311 /* PlayerViewController.swift */,
+				8406CFB22B039C9D0085B373 /* Info.plist */,
+				84A395B52B8793B100A981A0 /* Others */,
 			);
 			path = SimpleMusicPlayer;
 			sourceTree = "<group>";
@@ -206,6 +202,34 @@
 				842264052B68032F0087D265 /* SongItem+CoreDataProperties.swift */,
 			);
 			path = SongItem;
+			sourceTree = "<group>";
+		};
+		84A395B22B8792D100A981A0 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				8406CFA12B039C990085B373 /* AppDelegate.swift */,
+				8406CFA32B039C990085B373 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		84A395B42B87932300A981A0 /* PlayerControllers */ = {
+			isa = PBXGroup;
+			children = (
+				845752322B0F644400080311 /* PlayerViewController.swift */,
+				842264092B6BD3BB0087D265 /* CarPlayerViewController.swift */,
+				840BDB272B83A630005094F3 /* AbstractPlayerViewController.swift */,
+			);
+			path = PlayerControllers;
+			sourceTree = "<group>";
+		};
+		84A395B52B8793B100A981A0 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				8406CFAD2B039C9D0085B373 /* Assets.xcassets */,
+				8406CFAF2B039C9D0085B373 /* LaunchScreen.storyboard */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

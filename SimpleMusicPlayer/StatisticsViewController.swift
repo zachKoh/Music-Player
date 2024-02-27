@@ -32,21 +32,30 @@ class StatisticsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let rankedSongs = rankSongsByPlays()
+        let rankedSongs = rankSongsByPlays(songList: getSongList(userDefaults: userDefaults))
         cell.textLabel?.text = rankedSongs[indexPath.row].name
         cell.detailTextLabel?.text = String(rankedSongs[indexPath.row].plays)
         return cell
     }
     
-    private func rankSongsByPlays() -> [song] {
-        let PlayedSongs = userDefaults.stringArray(forKey: "PlayedSongs")!
-        var rankedSongs = [song]()
-        for i in 0..<PlayedSongs.count {
-            rankedSongs.append(song(name: PlayedSongs[i], plays: userDefaults.integer(forKey: PlayedSongs[i])))
+    //Make a list of songs using the "PlayedSongs" data from user defaults
+    func getSongList(userDefaults: UserDefaults) -> [song] {
+        guard let PlayedSongs = userDefaults.stringArray(forKey: "PlayedSongs") else {
+            return []
         }
-        let sortedSongs = rankedSongs.sorted {
+        var songList = [song]()
+        for i in 0..<PlayedSongs.count {
+            songList.append(song(name: PlayedSongs[i], plays: userDefaults.integer(forKey: PlayedSongs[i])))
+        }
+        return songList
+    }
+    
+    //Rank the songs and arrange them so that if the no of songs is above 
+    func rankSongsByPlays(songList: [song]) -> [song] {
+        let sortedSongs = songList.sorted {
             $0.plays > $1.plays
         }
+        
         return sortedSongs
     }
 }

@@ -74,7 +74,7 @@ class CarPlayerViewController: UIViewController {
             playedSongs = [String]()
         }
         if(playedSongs!.contains(songName)) {
-            print("That song has been added already")
+            //Song has been added already do nothing
         } else {
             playedSongs?.append(songName)
         }
