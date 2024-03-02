@@ -60,15 +60,30 @@ class ChartViewController: UIViewController {
     
     //Sort the artistList array by plays and create "others" entry if more than 5 artist so that it can fit on chart
     func rankArtistsByPlays(artistList: [artistObj]) -> [artistObj] {
-        let sortedArtists = artistList.sorted {
+        var sortedArtists = artistList.sorted {
             $0.plays > $1.plays
+        }
+        if sortedArtists.count > 6 {
+            let totalPlays = calcTotalPlays()
+            print(totalPlays)
+            sortedArtists.removeSubrange(5...(sortedArtists.count-1))
+            print(sortedArtists)
+            var count = 0
+            for i in 0...(sortedArtists.count-1){
+                count = count + sortedArtists[i].plays
+                print("YOOOOOO")
+                print(sortedArtists[i].plays)
+                print(count)
+            }
+            print(count)
+            sortedArtists.append(artistObj(name: "Others", plays: (totalPlays-count)))
         }
         return sortedArtists
     }
     
     //For "others" section should it be needed 
     private func calcTotalPlays() -> Int {
-        let playedSongs = userDefaults.stringArray(forKey: "PlayedSongs")!
+        let playedSongs = userDefaults.stringArray(forKey: "PlayedArtists")!
         var totalPlays: Int = 0
         for i in 0..<playedSongs.count {
             totalPlays = totalPlays + userDefaults.integer(forKey: playedSongs[i])
