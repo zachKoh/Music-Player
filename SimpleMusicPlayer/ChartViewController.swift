@@ -34,18 +34,6 @@ class ChartViewController: UIViewController {
         }
     }
     
-    //Make a list of songs using the "PlayedSongs" data from user defaults
-    func getSongList(userDefaults: UserDefaults) -> [song] {
-        guard let PlayedSongs = userDefaults.stringArray(forKey: "PlayedSongs") else {
-            return []
-        }
-        var songList = [song]()
-        for i in 0..<PlayedSongs.count {
-            songList.append(song(name: PlayedSongs[i], plays: userDefaults.integer(forKey: PlayedSongs[i])))
-        }
-        return songList
-    }
-    
     //Get list of played artists with name and play count information
     func getArtistList(userDefaults: UserDefaults) -> [artistObj] {
         guard let playedArtists = userDefaults.stringArray(forKey: "PlayedArtists") else {
@@ -58,24 +46,18 @@ class ChartViewController: UIViewController {
         return artistList
     }
     
-    //Sort the artistList array by plays and create "others" entry if more than 5 artist so that it can fit on chart
+    //Sort the artistList array by plays and create "others" entry if more than 6 artist so that it can fit on chart
     func rankArtistsByPlays(artistList: [artistObj]) -> [artistObj] {
         var sortedArtists = artistList.sorted {
             $0.plays > $1.plays
         }
         if sortedArtists.count > 6 {
             let totalPlays = calcTotalPlays()
-            print(totalPlays)
             sortedArtists.removeSubrange(5...(sortedArtists.count-1))
-            print(sortedArtists)
             var count = 0
             for i in 0...(sortedArtists.count-1){
                 count = count + sortedArtists[i].plays
-                print("YOOOOOO")
-                print(sortedArtists[i].plays)
-                print(count)
             }
-            print(count)
             sortedArtists.append(artistObj(name: "Others", plays: (totalPlays-count)))
         }
         return sortedArtists
