@@ -60,7 +60,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = song.songName
         cell.detailTextLabel?.text = song.artistName
         cell.accessoryType = .disclosureIndicator
-        cell.imageView?.image = UIImage(named: song.imageName ?? "Image1")
+        
+        
+        
+        let songName = song.songName ?? "Love, love, love"
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let imageURL = dir.appendingPathComponent(songName).appendingPathExtension("JPEG")
+        if FileManager.default.fileExists(atPath: imageURL.path) {
+            if let theImage = UIImage(contentsOfFile: imageURL.path) {
+                // Display the image in the image view
+                cell.imageView?.image = theImage
+            } else {
+                // Handle the case where UIImage couldn't be created from the image file
+                let theImage: UIImage = UIImage(named: "DefaultAlbumArt")!
+                cell.imageView?.image = theImage
+            }
+        } else {
+            // Handle the case where the image file doesn't exist at the specified path
+            let theImage: UIImage = UIImage(named: "DefaultAlbumArt")!
+            cell.imageView?.image = theImage
+        }
+        
+        
+        
         cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 18)
         cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 17)
         
@@ -195,9 +217,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @objc func getFiles(){
         
-        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.audio], asCopy: true)
+        
+        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.audio, UTType.image], asCopy: true)
         pickerViewController.delegate = self
-        pickerViewController.allowsMultipleSelection = false
+        pickerViewController.allowsMultipleSelection = true
         pickerViewController.shouldShowFileExtensions = true
         self.present(pickerViewController, animated: true, completion: nil)
     }

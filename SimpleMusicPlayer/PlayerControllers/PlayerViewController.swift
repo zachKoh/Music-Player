@@ -54,8 +54,21 @@ class PlayerViewController: UIViewController {
         
         
         //set up user interface elements
-        let theImage: UIImage = UIImage(named: song.imageName ?? "Image3")!
-        imageView.image = theImage
+        let imageURL = dir.appendingPathComponent(songName).appendingPathExtension("JPEG")
+        if FileManager.default.fileExists(atPath: imageURL.path) {
+            if let theImage = UIImage(contentsOfFile: imageURL.path) {
+                // Display the image in the image view
+                imageView.image = theImage
+            } else {
+                // Handle the case where UIImage couldn't be created from the image file
+                let theImage: UIImage = UIImage(named: "DefaultAlbumArt")!
+                imageView.image = theImage
+            }
+        } else {
+            // Handle the case where the image file doesn't exist at the specified path
+            let theImage: UIImage = UIImage(named: "DefaultAlbumArt")!
+            imageView.image = theImage
+        }
         trackName.text = song.songName
         artistName.text = song.artistName
         
