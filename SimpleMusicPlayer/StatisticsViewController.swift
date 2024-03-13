@@ -55,7 +55,6 @@ class StatisticsViewController: UIViewController, UITableViewDelegate, UITableVi
         let sortedSongs = songList.sorted {
             $0.plays > $1.plays
         }
-        
         return sortedSongs
     }
 }

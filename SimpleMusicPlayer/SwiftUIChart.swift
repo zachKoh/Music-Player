@@ -35,7 +35,7 @@ struct SwiftUIChart: View {
                 )
                 .foregroundStyle(by: .value("Name", artistObj.name))
             }
-            .frame(height:48)
+            .frame(height:90)
             .chartXAxis(.hidden)
         }
         .padding()

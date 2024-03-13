@@ -138,6 +138,7 @@ class PlayerViewController: UIViewController {
     
     
     @objc func tappedBackButton(_ sender: Any) {
+        pauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         if position > 0 {
             position = position - 1
             musicPlaying?.stop()
@@ -147,6 +148,7 @@ class PlayerViewController: UIViewController {
     
     
     @objc func tappedForwardButton(_ sender: Any) {
+        pauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         if position < (songs.count - 1) {
             position = position + 1
             musicPlaying?.stop()
