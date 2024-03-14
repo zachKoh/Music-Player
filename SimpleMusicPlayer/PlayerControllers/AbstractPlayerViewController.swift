@@ -52,7 +52,7 @@ class AbstractPlayerViewController: UIViewController {
         view.layer.insertSublayer(gradientLayer, at:0)
         
         //Add the generated image
-        let imageSize = CGSize(width: 200, height: 200)
+        let imageSize = CGSize(width: 358, height: 327)
         if let generatedImage = generateImage(from: songName, size: imageSize) {
             let imageView = UIImageView(image: generatedImage)
             image.addSubview(imageView)
