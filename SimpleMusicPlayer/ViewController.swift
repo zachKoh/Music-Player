@@ -257,7 +257,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         catch {
-            //error handling
+            print("Error fetching item: \(error)")
+            let alert = UIAlertController(title: "Error", message: "Error fetching items", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -273,7 +278,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             getItems()
         }
         catch {
-            //error handling
+            print("Error creating item: \(error)")
+            let alert = UIAlertController(title: "Error", message: "Error creating item", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -284,7 +294,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             try context.save()
         }
         catch {
-            //error handling
+            print("Error deleting item: \(error)")
+            let alert = UIAlertController(title: "Error", message: "Error deleting item", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

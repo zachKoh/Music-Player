@@ -47,7 +47,7 @@ class ChartViewController: UIViewController {
     }
     
     //Sort the artistList array by plays and create "others" entry if more than 6 artist so that it can fit on chart
-    func rankArtistsByPlays(artistList: [artistObj]) -> [artistObj] {
+    internal func rankArtistsByPlays(artistList: [artistObj]) -> [artistObj] {
         var sortedArtists = artistList.sorted {
             $0.plays > $1.plays
         }

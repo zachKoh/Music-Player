@@ -197,12 +197,13 @@ class AbstractPlayerViewController: UIViewController {
         context.fill(CGRect(origin: .zero, size: size))
         
         // Use hash components to determine the number and type of shapes
-        let numberOfShapes = Int((hashValue & 0xFF) % 5) + 10 // Random number of shapes (1 to 5)
+        let numberOfShapes = Int((hashValue & 0xFF) % 10) + 10
+        let shapeType = Int((hashValue & 0x0F) % 3) // Determine shape type (0: circle, 1: square, 2: triangle)
         
         for i in 0..<numberOfShapes {
-            let shapeType = Int((hashValue & 0x0F) % 3) // Determine shape type (0: circle, 1: square, 2: triangle)
             
-            let shapeSize = CGFloat((hashValue & 0xFFF) % 50) + 20 // Random shape size (20 to 70)
+            let shapeSize = CGFloat((hashValue & 0xFFF) % 50) + 100 // Random shape size
+            // Determine positions of shapes
             let xPos = CGFloat((hashValue >> 16) % UInt64(size.width - shapeSize) + UInt64(3^i))
             let yPos = CGFloat((hashValue >> 32) % UInt64(size.height - shapeSize) + UInt64(3^i))
             
@@ -234,11 +235,13 @@ class AbstractPlayerViewController: UIViewController {
         return image
     }
     
+    //Generate color using DJB2 hash function. This makes up one of the two background colours.
     func generateColor(from string: String) -> CGColor {
         let data = string.data(using: .utf8)!
         
         // Use a hash function to generate a numeric value from the string data (DJB2 hash function)
         var hashValue: UInt64 = 5381
+        
         for byte in data {
             hashValue = 127 * (hashValue & 0x00ffffffffffffff) + UInt64(byte)
         }
@@ -252,6 +255,7 @@ class AbstractPlayerViewController: UIViewController {
         return color
     }
     
+    //Generate color using FNV1a hash function. This makes up one of the two background colours.
     func generateColorUsingFNV1a(from string: String) -> CGColor {
         let data = string.data(using: .utf8)!
         

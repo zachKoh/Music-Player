@@ -35,7 +35,7 @@ class PlayerViewController: UIViewController {
         
         // set up player
         let song = songs[position]
-        let songName = song.songName ?? "Love, love, love"
+        let songName = song.songName ?? " "
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let mp3URL = dir.appendingPathComponent(songName).appendingPathExtension("mp3")
         
@@ -97,37 +97,35 @@ class PlayerViewController: UIViewController {
         
         
         // Increment the play count for artist that is being played in userDefaults
-        guard let artist: String = song.artistName else {
-            return // Error handling
-        }
+        guard let artist: String = song.artistName else {return}
         var artistPlayCount = userDefaults.integer(forKey: artist)
         artistPlayCount += 1
         userDefaults.set(artistPlayCount, forKey: artist)
         
-        // Add artist name to played songs array if not already there
+        //Add tartist name to played songs array if not already there
         var playedArtists = userDefaults.stringArray(forKey: "PlayedArtists")
-        // Initialize array if nil
+        //Initialize the array if it's nil
         if(playedArtists == nil) {
             playedArtists = [String]()
         }
         if(playedArtists!.contains(artist)) {
             //Song has already been added
+            print("Song has already been added")
         } else {
             playedArtists?.append(artist)
         }
         userDefaults.set(playedArtists, forKey: "PlayedArtists")
     }
 
+    @objc func updateSlider(){
+        slider.value = Float(musicPlaying?.currentTime ?? 0)
+    }
     
     @IBAction func audioChangeTime(_ sender: Any) {
         musicPlaying?.stop()
         musicPlaying?.currentTime = TimeInterval(slider.value)
         musicPlaying?.prepareToPlay()
         musicPlaying?.play()
-    }
-    
-    @objc func updateSlider(){
-        slider.value = Float(musicPlaying?.currentTime ?? 0)
     }
     
     @IBAction func pressedPause(_ sender: Any) {
